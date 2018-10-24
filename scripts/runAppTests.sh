@@ -1,4 +1,4 @@
 #! /usr/local/bin/zsh
-scripts/runTest.sh createRectangles.js appTestData/inputFiles/allRectanglesInput appTestData/outputFiles/allRectanglesOutput
-scripts/runTest.sh createTriangles.js appTestData/inputFiles/allTrianglesInput appTestData/outputFiles/allTrianglesOutput
-scripts/runTest.sh createDiamonds.js appTestData/inputFiles/allDiamondsInput appTestData/outputFiles/allDiamondsOutput
+scripts/runTest.sh createRectangle.js appTestData/inputFiles/allRectanglesInput appTestData/outputFiles/allRectanglesOutput
+scripts/runTest.sh createTriangle.js appTestData/inputFiles/allTrianglesInput appTestData/outputFiles/allTrianglesOutput
+scripts/runTest.sh createDiamond.js appTestData/inputFiles/allDiamondsInput appTestData/outputFiles/allDiamondsOutput
