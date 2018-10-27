@@ -1,22 +1,4 @@
-const generateLine = function(width, symbol){
-  let result = ""
-  for(let column = 1; column<=width; column++){
-    result = result + symbol;
-  }
-  return result;
-}
-
-const generateEmptyLine = function(width){
-  let symbol = "*";
-  let result = "";
-  result += symbol;
-  for(let column = 2; column<=width-1; column++){
-    let symbol = " ";
-    result = result + symbol;
-  }
-  result += symbol;
-  return result;
-}
+const {generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
 
 const generateFilledRectangle = function(height, width){
   let result = "";
@@ -62,7 +44,7 @@ const generateEmptyRectangle = function(height, width){
   return result;
 }
 
-const chooseRectangleType = function(rectangleType, height, width) {
+const generateRectangle = function(rectangleType, height, width) {
   let isTypeFilled = (rectangleType == "filled");
   let isTypeAlternating = (rectangleType == "alternating");
   let isTypeEmpty = (rectangleType == "empty");
@@ -107,7 +89,7 @@ const generateRightIndentedTriangle = function(height){
   return result;
 }
 
-const chooseTriangleType = function(triangleType, height) {
+const generateTriangle = function(triangleType, height) {
   let triangle = "";
   let isTypeLeft = (triangleType == "left");
   let isTypeRight = (triangleType == "right");
@@ -120,7 +102,7 @@ const chooseTriangleType = function(triangleType, height) {
   return triangle;
 }
 
-const generateDiamond = function(height){
+const generateFilledDiamond = function(height){
   let result = "";
   let width = 1;
   let widthOfSpaces = Math.floor(height/2);
@@ -198,9 +180,9 @@ const generateAngleDiamond = function(height){
   return result;
 }
 
-const chooseDiamondType = function(diamondType, height) {
+const generateDiamond = function(diamondType, height) {
   let diamond = "";
-  let isTypeDiamond = (diamondType == "diamond");
+  let isTypeDiamond = (diamondType == "filled");
   let isTypeHollow = (diamondType == "hollow");
   let isTypeAngle = (diamondType == "angle");
 
@@ -209,7 +191,7 @@ const chooseDiamondType = function(diamondType, height) {
   }
 
   if(isTypeDiamond) {
-    diamond = generateDiamond(height);
+    diamond = generateFilledDiamond(height);
   }
 
   if(isTypeHollow) {
@@ -234,6 +216,6 @@ const chooseDiamondType = function(diamondType, height) {
   return diamond;
 }
 
-exports.chooseDiamondType = chooseDiamondType;
-exports.chooseTriangleType = chooseTriangleType;
-exports.chooseRectangleType = chooseRectangleType;
+exports.generateDiamond = generateDiamond;
+exports.generateTriangle = generateTriangle;
+exports.generateRectangle = generateRectangle;
