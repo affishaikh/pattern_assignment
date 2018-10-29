@@ -65,19 +65,19 @@ const generateTriangleTest = function() {
   //Test left indented Triangle
   triangleInput = generateTriangleInputObject("left", 2);
   expectedOutput = ["* ","**"];
-  assert.equal(generateTriangle(triangleInput),expectedOutput);
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject(["left", 3);
+  triangleInput = generateTriangleInputObject("left", 3);
   expectedOutput = ["*  ","** ","***"];
-  assert.equal(generateTriangle(triangleInput),expectedOutput);
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject(["left", 5);
+  triangleInput = generateTriangleInputObject("left", 5);
   expectedOutput = ["*    ","**   ","***  ","**** ","*****"];
-  assert.equal(generateTriangle(triangleInput),expectedOutput);
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject(["left", 1);
+  triangleInput = generateTriangleInputObject("left", 1);
   expectedOutput = ["*"];
-  assert.equal(generateTriangle(triangleInput),expectedOutput);
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
   //Test right indented rectangle
   triangleInput.type = "right";

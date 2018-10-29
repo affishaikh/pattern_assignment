@@ -50,6 +50,15 @@ exports.createEmptyRectangleGenerator = function(parametersForRectangle, index){
   }
 }
 
+exports.createTriangleGenerator = function(index, height) {
+  return function() {
+    let line = generateLine(index, "*");
+    line += generateLine(height - index, " ");
+    index++;
+    return line;
+  }
+}
+
 exports.extractArgumentsForRectangle = function(arguments) {
   return {type:arguments[2], width:+arguments[3], height:+arguments[4] };
 }
