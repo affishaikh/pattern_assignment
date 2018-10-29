@@ -18,5 +18,13 @@ const generateEmptyLine = function(width){
   return result;
 }
 
+exports.extractArgumentsForRectangle = function(arguments) {
+  return {type:arguments[2], width:+arguments[3], height:+arguments[4] };
+}
+
+exports.extractArgumentsForTriangleAndDiamond = function(arguments) {
+  return {type:arguments[2], height:+arguments[3] };
+}
+
 exports.generateLine = generateLine;
 exports.generateEmptyLine = generateEmptyLine;

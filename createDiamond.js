@@ -1,8 +1,9 @@
 const {generateDiamond} = require('./src/patternsLib.js');
+const {extractArgumentsForTriangleAndDiamond} = require('./src/patternsUtilLib.js');
+
 const main = function() {
-  let diamondType = process.argv[2]
-  let height = +process.argv[3];
-  let diamond = generateDiamond(diamondType, height);
+  let parametersForDiamond = extractArgumentsForTriangleAndDiamond(process.argv);
+  let diamond = generateDiamond(parametersForDiamond);
   console.log(diamond);
 }
 main();

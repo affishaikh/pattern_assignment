@@ -3,14 +3,14 @@ const assert = require('assert');
 
 //Test Rectangle
 const generateRectangleTest = function() {
-  let expectedOutput = "";
+  let expectedOutput = [];
 
   //Test filled Rectangle
-  expectedOutput = "**\n**";
+  expectedOutput = ["**","**"];
   assert.equal(generateRectangle('filled',2,2),expectedOutput); 
-  expectedOutput = "***\n***\n***";
+  expectedOutput = ["***","***","***"];
   assert.equal(generateRectangle('filled',3,3),expectedOutput); 
-  expectedOutput = "********************\n********************\n********************";
+  expectedOutput = ["********************","********************","********************"];
   assert.equal(generateRectangle('filled',3,20),expectedOutput); 
 
   //Test empty rectangle

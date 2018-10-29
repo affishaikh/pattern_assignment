@@ -1,9 +1,10 @@
 const {generateTriangle} = require('./src/patternsLib.js');
+const {extractArgumentsForTriangleAndDiamond} = require('./src/patternsUtilLib.js');
 
 const main = function() {
-  let triangleType = process.argv[2];
-  let height = +process.argv[3];
-  let triangle = generateTriangle(triangleType, height);
+  let parametersForTriangle = extractArgumentsForTriangleAndDiamond(process.argv);
+  let triangle = generateTriangle(parametersForTriangle);
   console.log(triangle);
 }
+
 main();

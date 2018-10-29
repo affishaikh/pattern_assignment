@@ -44,7 +44,10 @@ const generateEmptyRectangle = function(height, width){
   return result;
 }
 
-const generateRectangle = function(rectangleType, height, width) {
+const generateRectangle = function(parametersForRectangle) {
+  let rectangleType = parametersForRectangle.type;
+  let width = parametersForRectangle.width;
+  let height = parametersForRectangle.height;
   let isTypeFilled = (rectangleType == "filled");
   let isTypeAlternating = (rectangleType == "alternating");
   let isTypeEmpty = (rectangleType == "empty");
@@ -89,7 +92,9 @@ const generateRightIndentedTriangle = function(height){
   return result;
 }
 
-const generateTriangle = function(triangleType, height) {
+const generateTriangle = function(parametersForTriangle) {
+  let triangleType = parametersForTriangle.type;
+  let height = parametersForTriangle.height;
   let triangle = "";
   let isTypeLeft = (triangleType == "left");
   let isTypeRight = (triangleType == "right");
@@ -180,7 +185,9 @@ const generateAngleDiamond = function(height){
   return result;
 }
 
-const generateDiamond = function(diamondType, height) {
+const generateDiamond = function(parametersForDiamond) {
+  let diamondType = parametersForDiamond.type;
+  let height = parametersForDiamond.height;
   let diamond = "";
   let isTypeDiamond = (diamondType == "filled");
   let isTypeHollow = (diamondType == "hollow");
