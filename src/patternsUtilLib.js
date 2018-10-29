@@ -18,10 +18,23 @@ const generateEmptyLine = function(width){
   return result;
 }
 
-exports.createRectangleGenerator = function(parametersForRectangle){
+exports.createFilledRectangleGenerator = function(parametersForRectangle){
   let width = parametersForRectangle.width;
   return function() {
     return generateLine(width, "*");
+  }
+}
+
+
+exports.createAlternatingRectangleGenerator = function(parametersForRectangle, index){
+  let width = parametersForRectangle.width;
+  return function() {
+    let isIndexEven = (index%2 === 0);
+    let line = generateLine(width, "*")
+    if(!isIndexEven)
+      line = generateLine(width, "-");
+    index++;
+    return line;
   }
 }
 
