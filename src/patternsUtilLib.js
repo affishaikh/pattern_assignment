@@ -38,6 +38,19 @@ exports.createAlternatingRectangleGenerator = function(parametersForRectangle, i
   }
 }
 
+exports.createEmptyRectangleGenerator = function(parametersForRectangle, index){
+  let width = parametersForRectangle.width;
+  let height = parametersForRectangle.height;
+  return function() {
+    let line = generateLine(width, "*")
+    let isLineFilled = (index === 0 || index === height-1);
+    if(!isLineFilled)
+      line = generateEmptyLine(width);
+    index++;
+    return line;
+  }
+}
+
 exports.extractArgumentsForRectangle = function(arguments) {
   return {type:arguments[2], width:+arguments[3], height:+arguments[4] };
 }

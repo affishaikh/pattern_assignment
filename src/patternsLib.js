@@ -1,5 +1,5 @@
 const {createFilledRectangleGenerator, generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
-const {createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
+const {createEmptyRectangleGenerator,createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
 
 const generateFilledRectangle = function(parametersForRectangle){
   let width = parametersForRectangle.width;
@@ -19,19 +19,12 @@ const generateAlternatingRectangle = function(parametersForRectangle){
   return result;
 }
 
-const generateEmptyRectangle = function(height, width){
-  let result = "";
-  let delimeter = "\n";
-  let filledLineStar = generateLine(width, "*");
-  let emptyLine = generateEmptyLine(width);
-  result = filledLineStar;
-  for(let row = 2; row<=height-1; row++)
-  {
-    let filledLine = emptyLine;
-    result = result + delimeter + filledLine ;
-  }
-  result = result + delimeter + filledLineStar;
-  result = result.split("\n");
+const generateEmptyRectangle = function(parametersForRectangle){
+  let width = parametersForRectangle.width;
+  let height = parametersForRectangle.height;
+  let result = new Array(height).fill(0);
+  let createRectangle = createEmptyRectangleGenerator(parametersForRectangle, 0);
+  result = result.map(createRectangle);
   return result;
 }
 
@@ -51,7 +44,7 @@ const generateRectangle = function(parametersForRectangle) {
   }
 
   if(isTypeEmpty){
-    return generateEmptyRectangle(height, width);
+    return generateEmptyRectangle(parametersForRectangle);
   }
   return "";
 }
