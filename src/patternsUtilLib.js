@@ -25,7 +25,6 @@ exports.createFilledRectangleGenerator = function(parametersForRectangle){
   }
 }
 
-
 exports.createAlternatingRectangleGenerator = function(parametersForRectangle, index){
   let width = parametersForRectangle.width;
   return function() {
