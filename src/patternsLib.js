@@ -23,6 +23,7 @@ const generateAlternatingRectangle = function(height, width){
     result = result + delimeter + filledLine ;
     delimeter = "\n";
   }
+  result = result.split("\n");
   return result;
 }
 
@@ -38,6 +39,7 @@ const generateEmptyRectangle = function(height, width){
     result = result + delimeter + filledLine ;
   }
   result = result + delimeter + filledLineStar;
+  result = result.split("\n");
   return result;
 }
 

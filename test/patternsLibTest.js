@@ -4,78 +4,119 @@ const assert = require('assert');
 //Test Rectangle
 const generateRectangleTest = function() {
   let expectedOutput = [];
-  let rectangleInput = {type : "", width: 0, height: 0};
+  let rectangleInput = {};
 
   //Test filled Rectangle
   rectangleInput.type = "filled";
   rectangleInput.width = 2;
   rectangleInput.height = 2;
   expectedOutput = ["**","**"];
-  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput); 
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
+
   rectangleInput.width = 3;
   rectangleInput.height = 3;
   expectedOutput = ["***","***","***"];
-  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput); 
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
+
   rectangleInput.width = 20;
   rectangleInput.height = 3;
   expectedOutput = ["********************","********************","********************"];
-  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput); 
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
 
   //Test empty rectangle
-  expectedOutput = "********************\n*                  *\n********************";
-  assert.equal(generateRectangle('empty',3,20),expectedOutput); 
-  expectedOutput = "***\n* *\n***";
-  assert.equal(generateRectangle('empty',3,3),expectedOutput); 
-  
+  rectangleInput.type = "empty";
+  rectangleInput.width = 20;
+  rectangleInput.height = 3;
+  expectedOutput = ["********************","*                  *","********************"];
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
+
+  rectangleInput.width = 3;
+  rectangleInput.height = 3;
+  expectedOutput = ["***","* *","***"];
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
+ 
   //Test alternating Rectangle
-  expectedOutput = "**\n--";
-  assert.equal(generateRectangle('alternating',2,2),expectedOutput); 
-  expectedOutput = "***\n---\n***";
-  assert.equal(generateRectangle('alternating',3,3),expectedOutput); 
-  expectedOutput = "********************\n--------------------\n********************";
-  assert.equal(generateRectangle('alternating',3,20),expectedOutput); 
+  rectangleInput.type = "alternating";
+  rectangleInput.width = 2;
+  rectangleInput.height = 2;
+  expectedOutput = ["**","--"];
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
+
+  rectangleInput.width = 3;
+  rectangleInput.height = 3;
+  expectedOutput = ["***","---","***"];
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
+
+  rectangleInput.width = 20;
+  rectangleInput.height = 3;
+  expectedOutput = ["********************","--------------------","********************"];
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
 }
 
 //Test Triangle
 const generateTriangleTest = function() {
   let expectedOutput = "";
+  let triangleInput = {};
 
   //Test left indented Triangle
+  triangleInput.type = "left";
+  triangleInput.height = 2;
   expectedOutput = "*\n**";
-  assert.equal(generateTriangle('left',2),expectedOutput); 
+  assert.equal(generateTriangle(triangleInput),expectedOutput);
+
+  triangleInput.height = 3;
   expectedOutput = "*\n**\n***";
-  assert.equal(generateTriangle('left',3),expectedOutput); 
+  assert.equal(generateTriangle(triangleInput),expectedOutput);
+
+  triangleInput.height = 5;
   expectedOutput = "*\n**\n***\n****\n*****";
-  assert.equal(generateTriangle('left',5),expectedOutput); 
+  assert.equal(generateTriangle(triangleInput),expectedOutput);
 
   //Test right indented rectangle
+  triangleInput.type = "right";
+  triangleInput.height = 3;
   expectedOutput = "  *\n **\n***";
-  assert.equal(generateTriangle('right',3),expectedOutput); 
+  assert.equal(generateTriangle(triangleInput),expectedOutput);
+
+  triangleInput.height = 5;
   expectedOutput = "    *\n   **\n  ***\n ****\n*****";
-  assert.equal(generateTriangle('right',5),expectedOutput); 
+  assert.equal(generateTriangle(triangleInput),expectedOutput);
 }
 
 //Test Diamond
 const generateDiamondTest = function() {
   let expectedOutput = "";
+  let diamondInput = {};
 
   //Test filled Diamond
+  diamondInput.type = "filled";
+  diamondInput.height = 3;
   expectedOutput = " * \n***\n * ";
-  assert.equal(generateDiamond('filled',3),expectedOutput); 
+  assert.equal(generateDiamond(diamondInput),expectedOutput);
+
+  diamondInput.height = 2;
   expectedOutput = "*";
-  assert.equal(generateDiamond('filled',2),expectedOutput); 
+  assert.equal(generateDiamond(diamondInput),expectedOutput);
 
   //Test empty rectangle
+  diamondInput.type = "hollow";
+  diamondInput.height = 3;
   expectedOutput = " * \n* *\n * ";
-  assert.equal(generateDiamond('hollow',3),expectedOutput); 
+  assert.equal(generateDiamond(diamondInput),expectedOutput);
+
+  diamondInput.height = 5;
   expectedOutput = "  *  \n * * \n*   *\n * * \n  *  ";
-  assert.equal(generateDiamond('hollow',5),expectedOutput); 
-  
+  assert.equal(generateDiamond(diamondInput),expectedOutput);
+ 
   //Test angle Diamond
+  diamondInput.type = "angle";
+  diamondInput.height = 3;
   expectedOutput = " * \n* *\n * ";
-  assert.equal(generateDiamond('angle',3),expectedOutput); 
+  assert.equal(generateDiamond(diamondInput),expectedOutput);
+
+  diamondInput.height = 5;
   expectedOutput = "  *  \n / \\ \n*   *\n \\ / \n  *  ";
-  assert.equal(generateDiamond('angle',5),expectedOutput); 
+  assert.equal(generateDiamond(diamondInput),expectedOutput);
 }
 
 generateRectangleTest();
