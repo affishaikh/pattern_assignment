@@ -11,15 +11,15 @@ const generateRectangleTest = function() {
   rectangleInput.width = 2;
   rectangleInput.height = 2;
   expectedOutput = ["**","**"];
-  assert.equal(generateRectangle(rectangleInput),expectedOutput); 
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput); 
   rectangleInput.width = 3;
   rectangleInput.height = 3;
   expectedOutput = ["***","***","***"];
-  assert.equal(generateRectangle(rectangleInput),expectedOutput); 
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput); 
   rectangleInput.width = 20;
   rectangleInput.height = 3;
   expectedOutput = ["********************","********************","********************"];
-  assert.equal(generateRectangle(rectangleInput),expectedOutput); 
+  assert.deepEqual(generateRectangle(rectangleInput),expectedOutput); 
 
   //Test empty rectangle
   expectedOutput = "********************\n*                  *\n********************";
