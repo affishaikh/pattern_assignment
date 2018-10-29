@@ -4,14 +4,22 @@ const assert = require('assert');
 //Test Rectangle
 const generateRectangleTest = function() {
   let expectedOutput = [];
+  let rectangleInput = {type : "", width: 0, height: 0};
 
   //Test filled Rectangle
+  rectangleInput.type = "filled";
+  rectangleInput.width = 2;
+  rectangleInput.height = 2;
   expectedOutput = ["**","**"];
-  assert.equal(generateRectangle('filled',2,2),expectedOutput); 
+  assert.equal(generateRectangle(rectangleInput),expectedOutput); 
+  rectangleInput.width = 3;
+  rectangleInput.height = 3;
   expectedOutput = ["***","***","***"];
-  assert.equal(generateRectangle('filled',3,3),expectedOutput); 
+  assert.equal(generateRectangle(rectangleInput),expectedOutput); 
+  rectangleInput.width = 20;
+  rectangleInput.height = 3;
   expectedOutput = ["********************","********************","********************"];
-  assert.equal(generateRectangle('filled',3,20),expectedOutput); 
+  assert.equal(generateRectangle(rectangleInput),expectedOutput); 
 
   //Test empty rectangle
   expectedOutput = "********************\n*                  *\n********************";
