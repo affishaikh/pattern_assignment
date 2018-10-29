@@ -20,6 +20,8 @@ const generateEmptyLineTest = function() {
   assert.equal(generateEmptyLine(8), expectedOutput);
   expectedOutput = "**";
   assert.equal(generateEmptyLine(2), expectedOutput);
+  expectedOutput = "*"
+  assert.equal(generateEmptyLine(1), expectedOutput);
 }
 
 generateLineTest();

@@ -10,11 +10,11 @@ const generateEmptyLine = function(width){
   let symbol = "*";
   let result = "";
   result += symbol;
-  for(let column = 2; column<=width-1; column++){
-    let symbol = " ";
-    result = result + symbol;
+  let middlePart = generateLine(width - 2, " ");
+  result += middlePart;
+  if(!(width===1)) {
+    result += symbol;
   }
-  result += symbol;
   return result;
 }
 
