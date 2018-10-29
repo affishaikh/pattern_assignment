@@ -59,6 +59,13 @@ exports.createTriangleGenerator = function(index, height) {
   }
 }
 
+exports.flipLines = function(line) {
+  line = line.split("");
+  line = line.reverse();
+  line = line.join("");
+  return line;
+}
+
 exports.extractArgumentsForRectangle = function(arguments) {
   return {type:arguments[2], width:+arguments[3], height:+arguments[4] };
 }

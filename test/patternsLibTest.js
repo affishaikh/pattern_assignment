@@ -80,14 +80,21 @@ const generateTriangleTest = function() {
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
   //Test right indented rectangle
-  triangleInput.type = "right";
-  triangleInput.height = 3;
-  expectedOutput = "  *\n **\n***";
-  assert.equal(generateTriangle(triangleInput),expectedOutput);
+  triangleInput = generateTriangleInputObject("right", 2);
+  expectedOutput = [" *","**"];
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput.height = 5;
-  expectedOutput = "    *\n   **\n  ***\n ****\n*****";
-  assert.equal(generateTriangle(triangleInput),expectedOutput);
+  triangleInput = generateTriangleInputObject("right", 3);
+  expectedOutput = ["  *"," **","***"];
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
+
+  triangleInput = generateTriangleInputObject("right", 5);
+  expectedOutput = ["    *","   **","  ***"," ****","*****"];
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
+
+  triangleInput = generateTriangleInputObject("right", 1);
+  expectedOutput = ["*"];
+  assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 }
 
 //Test Diamond

@@ -1,6 +1,6 @@
 const {createFilledRectangleGenerator, generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
 const {createEmptyRectangleGenerator,createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
-const {createTriangleGenerator} = require('./patternsUtilLib.js');
+const {createTriangleGenerator, flipLines} = require('./patternsUtilLib.js');
 
 const generateFilledRectangle = function(parametersForRectangle){
   let width = parametersForRectangle.width;
@@ -58,17 +58,8 @@ const generateLeftIndentedTriangle = function(height){
 }
 
 const generateRightIndentedTriangle = function(height){
-  let result = "";
-  let widthOfSpaces = height - 1;
-  let widthOfStar = 1;
-  let delimeter = "";
-  for(let row = 1; row <= height; row++){
-    let spaces = generateLine(widthOfSpaces--, " ");
-    result = result + delimeter + spaces;
-    let stars = generateLine(widthOfStar++, "*");
-    result = result + stars;
-    delimeter = "\n";
-  }
+  let result = generateLeftIndentedTriangle(height);
+  result = result.map(flipLines);
   return result;
 }
 
