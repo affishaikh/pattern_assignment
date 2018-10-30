@@ -15,13 +15,15 @@ const generateLineTest = function() {
 const generateEmptyLineTest = function() {
   let expectedOutput = "";
   expectedOutput = "*  *"
-  assert.equal(generateEmptyLine(4), expectedOutput);
-  expectedOutput = "*      *";
-  assert.equal(generateEmptyLine(8), expectedOutput);
+  assert.equal(generateEmptyLine('*',' ','*',4), expectedOutput);
+  expectedOutput = "/      \\";
+  assert.equal(generateEmptyLine('/',' ','\\',8), expectedOutput);
+  expectedOutput = "\\      /";
+  assert.equal(generateEmptyLine('\\',' ','/',8), expectedOutput);
   expectedOutput = "**";
-  assert.equal(generateEmptyLine(2), expectedOutput);
+  assert.equal(generateEmptyLine('*',' ','*',2), expectedOutput);
   expectedOutput = "*"
-  assert.equal(generateEmptyLine(1), expectedOutput);
+  assert.equal(generateEmptyLine('*',' ','*',1), expectedOutput);
 }
 
 generateLineTest();

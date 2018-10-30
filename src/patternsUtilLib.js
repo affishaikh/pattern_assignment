@@ -6,14 +6,13 @@ const generateLine = function(width, symbol){
   return result;
 }
 
-const generateEmptyLine = function(width){
-  let symbol = "*";
+const generateEmptyLine = function(firstCharacter, middleCharacter, lastCharacter, width){
   let result = "";
-  result += symbol;
-  let middlePart = generateLine(width - 2, " ");
+  result += firstCharacter;
+  let middlePart = generateLine(width - 2, middleCharacter);
   result += middlePart;
   if(!(width===1)) {
-    result += symbol;
+    result += lastCharacter;
   }
   return result;
 }
@@ -44,7 +43,7 @@ exports.createEmptyRectangleGenerator = function(parametersForRectangle, index){
     let line = generateLine(width, "*")
     let isLineFilled = (index === 0 || index === height-1);
     if(!isLineFilled)
-      line = generateEmptyLine(width);
+      line = generateEmptyLine('*',' ','*',width);
     index++;
     return line;
   }
@@ -94,8 +93,20 @@ exports.createFilledDiamondGenerator = function(height) {
 
 exports.createHollowDiamondGenerator = function(height) {
   return function(noOfStars) {
-    let line = generateEmptyLine(noOfStars);
+    let line = generateEmptyLine('*',' ','*',noOfStars);
     line = justifyLine(line, height, noOfStars); 
+    return line;
+  }
+}
+
+exports.createAngleDiamondGenerator = function(firstCharacter, middleCharacter, lastCharacter, height) {
+  return function(width) {
+    let line = "";
+    line = generateEmptyLine(firstCharacter, middleCharacter, lastCharacter, width);
+    if(width === 1) {
+      line = generateLine(width, '*');
+    }
+    line = justifyLine(line, height, width);
     return line;
   }
 }

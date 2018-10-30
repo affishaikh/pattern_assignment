@@ -121,14 +121,13 @@ const generateDiamondTest = function() {
   assert.deepEqual(generateDiamond(diamondInput),expectedOutput);
  
   //Test angle Diamond
-  diamondInput.type = "angle";
-  diamondInput.height = 3;
-  expectedOutput = " * \n* *\n * ";
-  assert.equal(generateDiamond(diamondInput),expectedOutput);
+  diamondInput = generateInputObject("angle", 3);
+  expectedOutput = [" * ","* *"," * "];
+  assert.deepEqual(generateDiamond(diamondInput),expectedOutput);
 
-  diamondInput.height = 5;
-  expectedOutput = "  *  \n / \\ \n*   *\n \\ / \n  *  ";
-  assert.equal(generateDiamond(diamondInput),expectedOutput);
+  diamondInput = generateInputObject("angle", 5);
+  expectedOutput = ["  *  "," / \\ ","*   *"," \\ / ","  *  "];
+  assert.deepEqual(generateDiamond(diamondInput),expectedOutput);
 }
 
 generateRectangleTest();
