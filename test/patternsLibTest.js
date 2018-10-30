@@ -53,7 +53,7 @@ const generateRectangleTest = function() {
   assert.deepEqual(generateRectangle(rectangleInput),expectedOutput);
 }
 
-const generateTriangleInputObject = function(type, height) {
+const generateInputObject = function(type, height) {
   return {type, height};
 }
 
@@ -63,36 +63,36 @@ const generateTriangleTest = function() {
   let triangleInput = {};
 
   //Test left indented Triangle
-  triangleInput = generateTriangleInputObject("left", 2);
+  triangleInput = generateInputObject("left", 2);
   expectedOutput = ["* ","**"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject("left", 3);
+  triangleInput = generateInputObject("left", 3);
   expectedOutput = ["*  ","** ","***"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject("left", 5);
+  triangleInput = generateInputObject("left", 5);
   expectedOutput = ["*    ","**   ","***  ","**** ","*****"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject("left", 1);
+  triangleInput = generateInputObject("left", 1);
   expectedOutput = ["*"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
   //Test right indented rectangle
-  triangleInput = generateTriangleInputObject("right", 2);
+  triangleInput = generateInputObject("right", 2);
   expectedOutput = [" *","**"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject("right", 3);
+  triangleInput = generateInputObject("right", 3);
   expectedOutput = ["  *"," **","***"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject("right", 5);
+  triangleInput = generateInputObject("right", 5);
   expectedOutput = ["    *","   **","  ***"," ****","*****"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 
-  triangleInput = generateTriangleInputObject("right", 1);
+  triangleInput = generateInputObject("right", 1);
   expectedOutput = ["*"];
   assert.deepEqual(generateTriangle(triangleInput),expectedOutput);
 }
@@ -103,14 +103,13 @@ const generateDiamondTest = function() {
   let diamondInput = {};
 
   //Test filled Diamond
-  diamondInput.type = "filled";
-  diamondInput.height = 3;
-  expectedOutput = " * \n***\n * ";
-  assert.equal(generateDiamond(diamondInput),expectedOutput);
+  diamondInput = generateInputObject("filled", 3);
+  expectedOutput = [" * ","***"," * "];
+  assert.deepEqual(generateDiamond(diamondInput),expectedOutput);
 
-  diamondInput.height = 2;
-  expectedOutput = "*";
-  assert.equal(generateDiamond(diamondInput),expectedOutput);
+  diamondInput = generateInputObject("filled", 2);
+  expectedOutput = ["*"];
+  assert.deepEqual(generateDiamond(diamondInput),expectedOutput);
 
   //Test empty rectangle
   diamondInput.type = "hollow";

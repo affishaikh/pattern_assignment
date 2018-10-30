@@ -1,6 +1,7 @@
 const {createFilledRectangleGenerator, generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
 const {createEmptyRectangleGenerator,createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
 const {createTriangleGenerator, flipLines} = require('./patternsUtilLib.js');
+const {createFilledDiamondGenerator} = require('./patternsUtilLib.js');
 
 const generateFilledRectangle = function(parametersForRectangle){
   let width = parametersForRectangle.width;
@@ -79,25 +80,17 @@ const generateTriangle = function(parametersForTriangle) {
   return triangle;
 }
 
-const generateFilledDiamond = function(height){
-  let result = "";
-  let width = 1;
-  let widthOfSpaces = Math.floor(height/2);
-  let delimeter = "";
-  let lowerPart = "";
-  for(let row = 1; row <= Math.floor(height/2); row++){
-    let upperPartLine = "";
-    let spaces = generateLine(widthOfSpaces--, " ");
-    let stars = generateLine(width, "*");
-    upperPartLine = spaces + stars + spaces;
-    lowerPart = upperPartLine + delimeter + lowerPart;
-    result = result + delimeter + upperPartLine;
-    width += 2;
-    delimeter = "\n";
+const generateFilledDiamond = function(parametersForDiamond){
+  let result = [];
+  let height = parametersForDiamond.height;
+  for(let noOfStars = 1; noOfStars <= height; noOfStars+=2) {
+    result.push(noOfStars);
   }
-  let stars = generateLine(width, "*");
-  result += delimeter + stars;
-  result += delimeter + lowerPart;
+  for(noOfStars = height - 2; noOfStars >= 1; noOfStars-=2) {
+    result.push(noOfStars);
+  }
+  let diamondGenerator = createFilledDiamondGenerator(height);
+  result = result.map(diamondGenerator);
   return result;
 }
 
@@ -161,7 +154,7 @@ const generateDiamond = function(parametersForDiamond) {
   let diamondType = parametersForDiamond.type;
   let height = parametersForDiamond.height;
   let diamond = "";
-  let isTypeDiamond = (diamondType == "filled");
+  let isTypeFilled = (diamondType == "filled");
   let isTypeHollow = (diamondType == "hollow");
   let isTypeAngle = (diamondType == "angle");
 
@@ -169,8 +162,8 @@ const generateDiamond = function(parametersForDiamond) {
     height -= 1;
   }
 
-  if(isTypeDiamond) {
-    diamond = generateFilledDiamond(height);
+  if(isTypeFilled) {
+    diamond = generateFilledDiamond(parametersForDiamond);
   }
 
   if(isTypeHollow) {

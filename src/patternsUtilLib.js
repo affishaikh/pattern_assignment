@@ -66,6 +66,21 @@ exports.flipLines = function(line) {
   return line;
 }
 
+const justifyLine = function(line, height, noOfStars) {
+  let noOfSpaces = (height - noOfStars)/2;
+  let spaces = generateLine(noOfSpaces, " ");
+  let result = spaces + line + spaces; 
+  return result;
+}
+
+exports.createFilledDiamondGenerator = function(height) {
+  return function(noOfStars) {
+    let line = generateLine(noOfStars,"*");
+    line = justifyLine(line, height, noOfStars); 
+    return line;
+  }
+}
+
 exports.extractArgumentsForRectangle = function(arguments) {
   return {type:arguments[2], width:+arguments[3], height:+arguments[4] };
 }
