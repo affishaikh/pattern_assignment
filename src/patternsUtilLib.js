@@ -66,6 +66,17 @@ exports.flipLines = function(line) {
   return line;
 }
 
+exports.generateArrayForDiamond = function(height) {
+  let result = [];
+  for(let noOfStars = 1; noOfStars <= height; noOfStars+=2) {
+    result.push(noOfStars);
+  }
+  for(noOfStars = height - 2; noOfStars >= 1; noOfStars-=2) {
+    result.push(noOfStars);
+  }
+  return result;
+}
+
 const justifyLine = function(line, height, noOfStars) {
   let noOfSpaces = (height - noOfStars)/2;
   let spaces = generateLine(noOfSpaces, " ");
@@ -76,6 +87,14 @@ const justifyLine = function(line, height, noOfStars) {
 exports.createFilledDiamondGenerator = function(height) {
   return function(noOfStars) {
     let line = generateLine(noOfStars,"*");
+    line = justifyLine(line, height, noOfStars); 
+    return line;
+  }
+}
+
+exports.createHollowDiamondGenerator = function(height) {
+  return function(noOfStars) {
+    let line = generateEmptyLine(noOfStars);
     line = justifyLine(line, height, noOfStars); 
     return line;
   }

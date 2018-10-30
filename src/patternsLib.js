@@ -1,7 +1,7 @@
 const {createFilledRectangleGenerator, generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
 const {createEmptyRectangleGenerator,createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
 const {createTriangleGenerator, flipLines} = require('./patternsUtilLib.js');
-const {createFilledDiamondGenerator} = require('./patternsUtilLib.js');
+const {createFilledDiamondGenerator, createHollowDiamondGenerator, generateArrayForDiamond} = require('./patternsUtilLib.js');
 
 const generateFilledRectangle = function(parametersForRectangle){
   let width = parametersForRectangle.width;
@@ -83,42 +83,18 @@ const generateTriangle = function(parametersForTriangle) {
 const generateFilledDiamond = function(parametersForDiamond){
   let result = [];
   let height = parametersForDiamond.height;
-  for(let noOfStars = 1; noOfStars <= height; noOfStars+=2) {
-    result.push(noOfStars);
-  }
-  for(noOfStars = height - 2; noOfStars >= 1; noOfStars-=2) {
-    result.push(noOfStars);
-  }
+  result = generateArrayForDiamond(height);
   let diamondGenerator = createFilledDiamondGenerator(height);
   result = result.map(diamondGenerator);
   return result;
 }
 
-const generateHollowDiamond = function(height){
-  let result = "";
-  let width = 1;
-  let widthOfSpaces = Math.floor(height/2);
-  let delimeter = "";
-  let lowerPart = "";
-  let spaces = generateLine(widthOfSpaces--, " ");
-  let stars = generateLine(width, "*");
-  result = spaces + stars + spaces;
-  let lowestLine = result;
-
-  for(let row = 2; row <= Math.floor(height/2); row++){
-    let upperPartLine = "";
-    let spaces =  generateLine(widthOfSpaces--, " ");
-    let middleSpaces = generateLine(width, " ");
-    upperPartLine = spaces + "*" + middleSpaces + "*" + spaces;
-    lowerPart = upperPartLine + delimeter + lowerPart;
-    result = result + "\n" + upperPartLine;
-    width += 2;
-    delimeter = "\n";
-  }
-  let middleSpaces = generateLine(width, " ");
-  result += delimeter + "*" + middleSpaces + "*";
-  result += delimeter + lowerPart;
-  result += delimeter + lowestLine;
+const generateHollowDiamond = function(parametersForDiamond){
+  let result = [];
+  let height = parametersForDiamond.height;
+  result = generateArrayForDiamond(height);
+  let diamondGenerator = createHollowDiamondGenerator(height);
+  result = result.map(diamondGenerator);
   return result;
 }
 
@@ -167,13 +143,7 @@ const generateDiamond = function(parametersForDiamond) {
   }
 
   if(isTypeHollow) {
-    if(height == 1){
-      diamond = "*";
-    } else if(height == 3){
-      diamond = " * \n* *\n * ";
-    } else {
-      diamond = generateHollowDiamond(height);
-    }
+      diamond = generateHollowDiamond(parametersForDiamond);
   }
 
   if(isTypeAngle) {
