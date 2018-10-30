@@ -4,6 +4,7 @@ const {extractArgumentsForTriangleAndDiamond} = require('./src/patternsUtilLib.j
 const main = function() {
   let parametersForTriangle = extractArgumentsForTriangleAndDiamond(process.argv);
   let triangle = generateTriangle(parametersForTriangle);
+  triangle = triangle.join('\n');
   console.log(triangle);
 }
 

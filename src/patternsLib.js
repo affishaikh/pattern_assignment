@@ -50,15 +50,16 @@ const generateRectangle = function(parametersForRectangle) {
   return "";
 }
 
-const generateLeftIndentedTriangle = function(height){
+const generateLeftIndentedTriangle = function(parametersForTriangle){
+  let height = parametersForTriangle.height;
   let result = new Array(height).fill(0);
   let triangleGenerator = createTriangleGenerator(1,height);
   result = result.map(triangleGenerator); 
   return result;
 }
 
-const generateRightIndentedTriangle = function(height){
-  let result = generateLeftIndentedTriangle(height);
+const generateRightIndentedTriangle = function(parametersForTriangle){
+  let result = generateLeftIndentedTriangle(parametersForTriangle);
   result = result.map(flipLines);
   return result;
 }
@@ -70,10 +71,10 @@ const generateTriangle = function(parametersForTriangle) {
   let isTypeLeft = (triangleType == "left");
   let isTypeRight = (triangleType == "right");
   if(isTypeLeft) {
-    triangle = generateLeftIndentedTriangle(height);
+    triangle = generateLeftIndentedTriangle(parametersForTriangle);
   }
   if(isTypeRight) {
-    triangle = generateRightIndentedTriangle(height);
+    triangle = generateRightIndentedTriangle(parametersForTriangle);
   }
   return triangle;
 }
