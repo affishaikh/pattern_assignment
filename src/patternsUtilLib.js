@@ -17,14 +17,14 @@ const generateEmptyLine = function(firstCharacter, middleCharacter, lastCharacte
   return result;
 }
 
-exports.createFilledRectangleGenerator = function(parametersForRectangle){
+const createFilledRectangleGenerator = function(parametersForRectangle){
   let width = parametersForRectangle.width;
   return function() {
     return generateLine(width, "*");
   }
 }
 
-exports.createAlternatingRectangleGenerator = function(parametersForRectangle, index){
+const createAlternatingRectangleGenerator = function(parametersForRectangle, index){
   let width = parametersForRectangle.width;
   return function() {
     let isIndexEven = (index%2 === 0);
@@ -36,7 +36,7 @@ exports.createAlternatingRectangleGenerator = function(parametersForRectangle, i
   }
 }
 
-exports.createEmptyRectangleGenerator = function(parametersForRectangle, index){
+const createEmptyRectangleGenerator = function(parametersForRectangle, index){
   let width = parametersForRectangle.width;
   let height = parametersForRectangle.height;
   return function() {
@@ -49,7 +49,7 @@ exports.createEmptyRectangleGenerator = function(parametersForRectangle, index){
   }
 }
 
-exports.createLeftIndentedTriangleGenerator = function(index, height) {
+const createLeftIndentedTriangleGenerator = function(index, height) {
   return function() {
     let line = generateLine(index, "*");
     line += generateLine(height - index, " ");
@@ -58,23 +58,23 @@ exports.createLeftIndentedTriangleGenerator = function(index, height) {
   }
 }
 
-exports.createRightIndentedTriangleGenerator = function(index, height) {
-  let createLine = exports.createLeftIndentedTriangleGenerator(index, height);
+const createRightIndentedTriangleGenerator = function(index, height) {
+  let createLine = createLeftIndentedTriangleGenerator(index, height);
   return function() {
     let line = createLine();
-    line = exports.flipLine(line);
+    line = flipLine(line);
     return line;
   }
 }
 
-exports.flipLine = function(line) {
+const flipLine = function(line) {
   line = line.split("");
   line = line.reverse();
   line = line.join("");
   return line;
 }
 
-exports.generateArrayForDiamond = function(height) {
+const generateArrayForDiamond = function(height) {
   let result = [];
   for(let noOfStars = 1; noOfStars <= height; noOfStars+=2) {
     result.push(noOfStars);
@@ -92,23 +92,7 @@ const justifyLine = function(line, height, noOfStars) {
   return result;
 }
 
-exports.createFilledDiamondGenerator = function(height) {
-  return function(noOfStars) {
-    let line = generateLine(noOfStars,"*");
-    line = justifyLine(line, height, noOfStars); 
-    return line;
-  }
-}
-
-exports.createHollowDiamondGenerator = function(height) {
-  return function(noOfStars) {
-    let line = generateEmptyLine('*',' ','*',noOfStars);
-    line = justifyLine(line, height, noOfStars); 
-    return line;
-  }
-}
-
-exports.createAngleDiamondGenerator = function(firstCharacter, middleCharacter, lastCharacter, height) {
+const createDiamondGenerator = function(firstCharacter, middleCharacter, lastCharacter, height) {
   return function(width) {
     let line = "";
     line = generateEmptyLine(firstCharacter, middleCharacter, lastCharacter, width);
@@ -120,13 +104,24 @@ exports.createAngleDiamondGenerator = function(firstCharacter, middleCharacter, 
   }
 }
 
-exports.extractArgumentsForRectangle = function(arguments) {
+const extractArgumentsForRectangle = function(arguments) {
   return {type:arguments[2], width:+arguments[3], height:+arguments[4] };
 }
 
-exports.extractArgumentsForTriangleAndDiamond = function(arguments) {
+const extractArgumentsForTriangleAndDiamond = function(arguments) {
   return {type:arguments[2], height:+arguments[3] };
 }
 
 exports.generateLine = generateLine;
 exports.generateEmptyLine = generateEmptyLine;
+exports.createFilledRectangleGenerator = createFilledRectangleGenerator;
+exports.createAlternatingRectangleGenerator = createAlternatingRectangleGenerator;
+exports.createEmptyRectangleGenerator = createEmptyRectangleGenerator;
+exports.createLeftIndentedTriangleGenerator = createLeftIndentedTriangleGenerator;
+exports.createRightIndentedTriangleGenerator = createRightIndentedTriangleGenerator;
+exports.flipLine = flipLine;
+exports.generateArrayForDiamond = generateArrayForDiamond;
+exports.justifyLine = justifyLine;
+exports.createDiamondGenerator = createDiamondGenerator;
+exports.extractArgumentsForRectangle = extractArgumentsForRectangle;
+exports.extractArgumentsForTriangleAndDiamond = extractArgumentsForTriangleAndDiamond;
