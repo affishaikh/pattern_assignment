@@ -1,81 +1,54 @@
-const {createFilledRectangleGenerator, generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
-const {createEmptyRectangleGenerator,createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
-const {createTriangleGenerator, flipLines} = require('./patternsUtilLib.js');
+const {generateLine, generateEmptyLine} = require('./patternsUtilLib.js');
+const {createFilledRectangleGenerator,createEmptyRectangleGenerator,createAlternatingRectangleGenerator} = require('./patternsUtilLib.js');
+const {createLeftIndentedTriangleGenerator,createRightIndentedTriangleGenerator } = require('./patternsUtilLib.js');
 const {createFilledDiamondGenerator, createHollowDiamondGenerator, createAngleDiamondGenerator, generateArrayForDiamond} = require('./patternsUtilLib.js');
 
-const generateFilledRectangle = function(parametersForRectangle){
+const rectangleGenerator = function(parametersForRectangle, createRectangleGenerator){
   let width = parametersForRectangle.width;
   let height = parametersForRectangle.height;
   let result = new Array(height).fill(0);
-  let createRectangle = createFilledRectangleGenerator(parametersForRectangle);
-  result = result.map(createRectangle);
-  return result;
-}
-
-const generateAlternatingRectangle = function(parametersForRectangle){
-  let width = parametersForRectangle.width;
-  let height = parametersForRectangle.height;
-  let result = new Array(height).fill(0);
-  let createRectangle = createAlternatingRectangleGenerator(parametersForRectangle, 0);
-  result = result.map(createRectangle);
-  return result;
-}
-
-const generateEmptyRectangle = function(parametersForRectangle){
-  let width = parametersForRectangle.width;
-  let height = parametersForRectangle.height;
-  let result = new Array(height).fill(0);
-  let createRectangle = createEmptyRectangleGenerator(parametersForRectangle, 0);
+  let createRectangle = createRectangleGenerator(parametersForRectangle, 0);
   result = result.map(createRectangle);
   return result;
 }
 
 const generateRectangle = function(parametersForRectangle) {
   let rectangleType = parametersForRectangle.type;
-  let width = parametersForRectangle.width;
-  let height = parametersForRectangle.height;
   let isTypeFilled = (rectangleType == "filled");
   let isTypeAlternating = (rectangleType == "alternating");
   let isTypeEmpty = (rectangleType == "empty");
   if(isTypeFilled){
-    return generateFilledRectangle(parametersForRectangle);
+    return rectangleGenerator(parametersForRectangle, createFilledRectangleGenerator);
   }
 
   if(isTypeAlternating){
-    return generateAlternatingRectangle(parametersForRectangle);
+    return rectangleGenerator(parametersForRectangle, createAlternatingRectangleGenerator);
   }
 
   if(isTypeEmpty){
-    return generateEmptyRectangle(parametersForRectangle);
+    return rectangleGenerator(parametersForRectangle, createEmptyRectangleGenerator);
   }
   return "";
 }
 
-const generateLeftIndentedTriangle = function(parametersForTriangle){
+const triangleGenerator = function(parametersForTriangle, createTriangleGenerator){
   let height = parametersForTriangle.height;
   let result = new Array(height).fill(0);
-  let triangleGenerator = createTriangleGenerator(1,height);
-  result = result.map(triangleGenerator); 
-  return result;
-}
-
-const generateRightIndentedTriangle = function(parametersForTriangle){
-  let result = generateLeftIndentedTriangle(parametersForTriangle);
-  result = result.map(flipLines);
+  let createTriangle = createTriangleGenerator(1,height);
+  result = result.map(createTriangle); 
   return result;
 }
 
 const generateTriangle = function(parametersForTriangle) {
   let triangleType = parametersForTriangle.type;
-  let height = parametersForTriangle.height;
   let triangle = "";
   let isTypeLeft = (triangleType == "left");
   let isTypeRight = (triangleType == "right");
   if(isTypeLeft) {
-    triangle = generateLeftIndentedTriangle(parametersForTriangle);
+    triangle = triangleGenerator(parametersForTriangle, createLeftIndentedTriangleGenerator);
   }
   if(isTypeRight) {
-    triangle = generateRightIndentedTriangle(parametersForTriangle);
+    triangle = triangleGenerator(parametersForTriangle, createRightIndentedTriangleGenerator);
   }
   return triangle;
 }

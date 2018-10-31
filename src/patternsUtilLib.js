@@ -49,7 +49,7 @@ exports.createEmptyRectangleGenerator = function(parametersForRectangle, index){
   }
 }
 
-exports.createTriangleGenerator = function(index, height) {
+exports.createLeftIndentedTriangleGenerator = function(index, height) {
   return function() {
     let line = generateLine(index, "*");
     line += generateLine(height - index, " ");
@@ -58,7 +58,16 @@ exports.createTriangleGenerator = function(index, height) {
   }
 }
 
-exports.flipLines = function(line) {
+exports.createRightIndentedTriangleGenerator = function(index, height) {
+  let createLine = exports.createLeftIndentedTriangleGenerator(index, height);
+  return function() {
+    let line = createLine();
+    line = exports.flipLine(line);
+    return line;
+  }
+}
+
+exports.flipLine = function(line) {
   line = line.split("");
   line = line.reverse();
   line = line.join("");
